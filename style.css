@@ -6,25 +6,69 @@
 }
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #519e8a;
+  background-color: #e6e6ea;
+  display: grid;
+  grid-template: min-content 1fr / 1fr 4fr;
+  min-height: 100vh;
 }
 header {
-  background-color: #476a6f;
+  background-color: #f4f4f8;
   height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #edd3c4;
+  color: black;
+  grid-column: 2;
+}
+nav {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  background-color: #f2c078;
+  padding: 100px 0px;
+  align-items: center;
+  gap: 50px;
+}
+nav,
+nav > form {
+  display: flex;
+  flex-direction: column;
+}
+nav > button,
+form > button {
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: none;
+  background-color: #ff495c;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+nav > button:hover,
+form > button:hover {
+  transform: scale(1.1);
+  background-color: #d92335;
+}
+input[type="checkbox"] {
+  float: right;
+}
+form > input {
+  margin-bottom: 20px;
+}
+form > button {
+  margin-top: 20px;
 }
 main {
-  display: flex;
-  flex-wrap: wrap;
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 250px;
 }
 .card {
-  min-width: 350px;
   border-radius: 10px;
-  border-left: 5px solid #d92335;
-  min-height: 200px;
+  height: 200px;
+  border-left: 5px solid #f2c078;
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
@@ -48,22 +92,22 @@ main {
   gap: 20px;
 }
 .card > div > button {
-  padding: 5px 15px;
+  padding: 10px 20px;
   border-radius: 20px;
   border: none;
-  background-color: #d92335;
-  color: #edd3c4;
+  background-color: #f2c078;
+  color: black;
   font-weight: 600;
   cursor: pointer;
   transition: 0.4s ease;
 }
 .card > div > button:hover {
   transform: scale(1.05);
-  background-color: #ff495c;
+  background-color: #e2a551;
 }
 .read {
-  background-color: #679436;
+  background-color: #9cde9f;
 }
 .unread {
-  background-color: #427aa1;
+  background-color: #f4f4f8;
 }

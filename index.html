@@ -6,12 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
-    <title>Document</title>
+    <title>Library</title>
   </head>
   <body>
     <header>
-        <h1>MY LIBRARY</h1>
+      <h1>MY LIBRARY</h1>
     </header>
+    <nav>
+      <form>
+        <label for="title">What's the title of the book?</label
+        ><input type="text" name="title" id="title" required />
+        <label for="author">Who did write this book?</label
+        ><input type="text" name="author" id="author" required />
+        <label for="pages">How many pages the book has?</label
+        ><input type="number" name="pages" id="pages" />
+        <label for="read"
+          >Have you read it already?<input
+            type="checkbox"
+            name="read"
+            id="read"
+        /></label>
+        <button type="button" class="submit">Submit</button>
+      </form>
+      <button class="deleteAll">DELETE ALL</button>
+    </nav>
     <main></main>
   </body>
 </html>

@@ -1,4 +1,5 @@
 let myLibrary = [];
+const body = document.querySelector("body");
 const main = document.querySelector("main");
 
 function Book(author, title, pages, isRead) {
@@ -11,12 +12,11 @@ myLibrary.push(new Book("J.K Rowling", "Haris Poteris", 292, true));
 myLibrary.push(new Book("Kelly MCgonagal", "Valios Galia", 222, false));
 myLibrary.push(new Book("J.K Rowling", "Haris Poteris", 292, true));
 myLibrary.push(new Book("Kelly MCgonagal", "Valios Galia", 222, false));
-
-function addBookToLibrary() {}
-
+myLibrary.push(new Book("J.K Rowling", "Haris Poteris", 292, true));
+myLibrary.push(new Book("Kelly MCgonagal", "Valios Galia", 222, false));
 printCards();
 
-main.addEventListener("click", (e) => HandleClick(e));
+body.addEventListener("click", (e) => HandleClick(e));
 
 function printCards() {
   for (let i = 0; i < myLibrary.length; i++) {
@@ -58,31 +58,49 @@ function printCards() {
   }
 }
 
+function addBookToLibrary(title, author, pages, isRead) {
+  let book = new Book(title, author, pages, isRead);
+  myLibrary.push(book);
+  main.innerHTML = "";
+  printCards();
+}
+
 function HandleClick(e) {
   {
-    if (e.target.classList.contains("remove")) {
-      RemoveBook(e);
-    } else if (e.target.classList.contains("toggle")) {
-      Toggle(e);
+    if (e.target.tagName.toLowerCase() === "button") {
+      if (e.target.classList.contains("remove")) {
+        RemoveBook(e);
+      } else if (e.target.classList.contains("toggle")) {
+        Toggle(e);
+      } else if (e.target.classList.contains("deleteAll")) {
+        DeleteAll();
+      } else if (e.target.classList.contains("submit")) {
+        let title = document.querySelector("#title").value;
+        let author = document.querySelector("#author").value;
+        let pages = document.querySelector("#pages").value;
+        let isRead = document.querySelector("#read").checked;
+        addBookToLibrary(title, author, pages, isRead);
+      }
     }
   }
 }
 function RemoveBook(e) {
   let i = e.target.parentNode.parentNode.dataset.index;
-  console.log(i);
   myLibrary.splice(i, 1);
   main.innerHTML = "";
   printCards();
 }
 function Toggle(e) {
   let i = e.target.parentNode.parentNode.dataset.index;
-  console.log(i);
   if (myLibrary[i].isRead === true) {
     myLibrary[i].isRead = false;
   } else {
     myLibrary[i].isRead = true;
   }
-  console.table(myLibrary);
   e.target.parentNode.parentNode.classList.toggle("read");
   e.target.parentNode.parentNode.classList.toggle("unread");
+}
+function DeleteAll() {
+  myLibrary = [];
+  main.innerHTML = "";
 }
