@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap");
+:root {
+  --main-color: #4a171e;
+  --button-color: #ff495c;
+  --button-hover-color: #d92335;
+  --text-color: #e29144;
+}
 * {
   padding: 0;
   margin: 0;
@@ -6,9 +12,8 @@
 }
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #e6e6ea;
-  display: grid;
-  grid-template: min-content 1fr / 1fr 4fr;
+  background-color: var(--text-color);
+  display: flex;
   min-height: 100vh;
 }
 header {
@@ -18,27 +23,33 @@ header {
   justify-content: center;
   align-items: center;
   color: black;
-  grid-column: 2;
 }
 nav {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  background-color: #f2c078;
-  padding: 100px 0px;
-  align-items: center;
+  background-color: var(--main-color);
+  color: var(--text-color);
+  font-size: 1.25rem;
+  padding: 30px;
   gap: 50px;
+  font-weight: 700;
+  min-width: 20%;
 }
 nav,
 nav > form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+.nav__logo {
+  display: flex;
+  width: 75%;
+  gap: 20px;
 }
 nav > button,
 form > button {
   padding: 10px 30px;
   border-radius: 20px;
   border: none;
-  background-color: #ff495c;
+  background-color: var(--button-color);
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -47,33 +58,52 @@ form > button {
 nav > button:hover,
 form > button:hover {
   transform: scale(1.1);
-  background-color: #d92335;
+  background-color: var(--button-hover-color);
 }
-input[type="checkbox"] {
-  float: right;
+form > label {
+  margin-bottom: 10px;
 }
 form > input {
   margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 5px;
+}
+input[type="checkbox"]:checked {
+  background-color: var(--text-color);
+}
+form > input:focus {
+  border: 2px solid var(--text-color);
+  outline: none;
 }
 form > button {
   margin-top: 20px;
 }
+.nav__stats {
+  margin-top: auto;
+}
+.nav__stats > * {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.stats {
+  font-size: 1.5rem;
+}
 main {
-  grid-column: 2;
-  grid-row: 2;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 250px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: min-content;
+  padding: 10px;
+  gap: 10px;
+  width: calc(100vw - 20%);
 }
 .card {
   border-radius: 10px;
   height: 200px;
-  border-left: 5px solid #f2c078;
+  border-left: 5px solid var(--main-color);
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
   background-color: #c5c9a4;
-  margin: 15px;
   align-items: center;
   transition: 0.4s ease;
 }
@@ -95,7 +125,7 @@ main {
   padding: 10px 20px;
   border-radius: 20px;
   border: none;
-  background-color: #f2c078;
+  background-color: var(--button-color);
   color: black;
   font-weight: 600;
   cursor: pointer;
@@ -103,7 +133,7 @@ main {
 }
 .card > div > button:hover {
   transform: scale(1.05);
-  background-color: #e2a551;
+  background-color: var(--button-hover-color);
 }
 .read {
   background-color: #9cde9f;

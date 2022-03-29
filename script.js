@@ -1,6 +1,9 @@
 let myLibrary = [];
 const body = document.querySelector("body");
 const main = document.querySelector("main");
+const form = document.querySelector("form");
+const readCount = document.querySelector("#readCount");
+const unreadCount = document.querySelector("#unreadCount");
 
 function Book(author, title, pages, isRead) {
   this.author = author;
@@ -8,13 +11,9 @@ function Book(author, title, pages, isRead) {
   this.pages = pages;
   this.isRead = isRead;
 }
-myLibrary.push(new Book("J.K Rowling", "Haris Poteris", 292, true));
-myLibrary.push(new Book("Kelly MCgonagal", "Valios Galia", 222, false));
-myLibrary.push(new Book("J.K Rowling", "Haris Poteris", 292, true));
-myLibrary.push(new Book("Kelly MCgonagal", "Valios Galia", 222, false));
-myLibrary.push(new Book("J.K Rowling", "Haris Poteris", 292, true));
-myLibrary.push(new Book("Kelly MCgonagal", "Valios Galia", 222, false));
+
 printCards();
+UpdateCount();
 
 body.addEventListener("click", (e) => HandleClick(e));
 
@@ -69,9 +68,11 @@ function HandleClick(e) {
   {
     if (e.target.tagName.toLowerCase() === "button") {
       if (e.target.classList.contains("remove")) {
-        RemoveBook(e);
+        RemoveBook(e.target.parentNode.parentNode.dataset.index);
       } else if (e.target.classList.contains("toggle")) {
-        Toggle(e);
+        Toggle(e.target.parentNode.parentNode.dataset.index);
+        e.target.parentNode.parentNode.classList.toggle("read");
+        e.target.parentNode.parentNode.classList.toggle("unread");
       } else if (e.target.classList.contains("deleteAll")) {
         DeleteAll();
       } else if (e.target.classList.contains("submit")) {
@@ -80,27 +81,30 @@ function HandleClick(e) {
         let pages = document.querySelector("#pages").value;
         let isRead = document.querySelector("#read").checked;
         addBookToLibrary(title, author, pages, isRead);
+        form.reset();
       }
     }
+    UpdateCount();
   }
 }
-function RemoveBook(e) {
-  let i = e.target.parentNode.parentNode.dataset.index;
-  myLibrary.splice(i, 1);
+function RemoveBook(index) {
+  myLibrary.splice(index, 1);
   main.innerHTML = "";
   printCards();
 }
-function Toggle(e) {
-  let i = e.target.parentNode.parentNode.dataset.index;
-  if (myLibrary[i].isRead === true) {
-    myLibrary[i].isRead = false;
+function Toggle(index) {
+  if (myLibrary[index].isRead === true) {
+    myLibrary[index].isRead = false;
   } else {
-    myLibrary[i].isRead = true;
+    myLibrary[index].isRead = true;
   }
-  e.target.parentNode.parentNode.classList.toggle("read");
-  e.target.parentNode.parentNode.classList.toggle("unread");
 }
 function DeleteAll() {
   myLibrary = [];
   main.innerHTML = "";
+}
+function UpdateCount() {
+  const count = myLibrary.reduce((count, book) => (count += book.isRead), 0);
+  readCount.textContent = count;
+  unreadCount.textContent = myLibrary.length - count;
 }
