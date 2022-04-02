@@ -5,11 +5,13 @@ const form = document.querySelector("form");
 const readCount = document.querySelector("#readCount");
 const unreadCount = document.querySelector("#unreadCount");
 
-function Book(author, title, pages, isRead) {
-  this.author = author;
-  this.title = title;
-  this.pages = pages;
-  this.isRead = isRead;
+class Book {
+  constructor(author, title, pages, isRead) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.isRead = isRead;
+  }
 }
 
 printCards();
