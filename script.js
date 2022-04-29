@@ -26,7 +26,7 @@ form.addEventListener("submit", (event) => {
   let isRead = document.querySelector("#read").checked;
   addBookToLibrary(title, author, pages, isRead);
   form.reset();
-  return false;
+  event.preventDefault();
 });
 
 function printCards() {
