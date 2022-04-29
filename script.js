@@ -19,6 +19,16 @@ UpdateCount();
 
 body.addEventListener("click", (e) => HandleClick(e));
 
+form.addEventListener("submit", (event) => {
+  let title = document.querySelector("#title").value;
+  let author = document.querySelector("#author").value;
+  let pages = document.querySelector("#pages").value;
+  let isRead = document.querySelector("#read").checked;
+  addBookToLibrary(title, author, pages, isRead);
+  form.reset();
+  return false;
+});
+
 function printCards() {
   for (let i = 0; i < myLibrary.length; i++) {
     let book = myLibrary[i];
@@ -77,18 +87,12 @@ function HandleClick(e) {
         e.target.parentNode.parentNode.classList.toggle("unread");
       } else if (e.target.classList.contains("deleteAll")) {
         DeleteAll();
-      } else if (e.target.classList.contains("submit")) {
-        let title = document.querySelector("#title").value;
-        let author = document.querySelector("#author").value;
-        let pages = document.querySelector("#pages").value;
-        let isRead = document.querySelector("#read").checked;
-        addBookToLibrary(title, author, pages, isRead);
-        form.reset();
       }
     }
-    UpdateCount();
   }
+  UpdateCount();
 }
+
 function RemoveBook(index) {
   myLibrary.splice(index, 1);
   main.innerHTML = "";

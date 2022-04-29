@@ -16,7 +16,7 @@
         <img src="images/books.svg" alt="" />
         <h1>MY LIBRARY</h1>
       </div>
-      <form>
+      <form onsubmit="return false">
         <label for="title">What's the title of the book?</label
         ><input
           type="text"
@@ -39,13 +39,13 @@
           >Have you read it already?
           <input type="checkbox" name="read" id="read"
         /></label>
-        <button type="button" class="submit">ADD BOOK</button>
+        <button type="submit" class="submit">ADD BOOK</button>
       </form>
       <button class="deleteAll">REMOVE ALL</button>
       <div class="nav__stats">
         <p class="stats">STATS:</p>
         <p class="stats__books-read">BOOKS READ: <span id="readCount"></span></p>
-        <p class="stats__books-unread">BOOKS UNREAD: <span id="unreadCount"></span></p>
+        <p class="stats__books-unread">BOOKS UNREAD: <span id="unreazdCount"></span></p>
       </div>
     </nav>
     <main></main>
